@@ -1,0 +1,63 @@
+# Mail Merge Document Generator
+
+## Overview
+This project is an ASP.NET Web Forms application that demonstrates how to generate customized documents from Word templates using a reusable mail-merge helper class.  
+The application loads a `.dotx` template, injects dynamic values into placeholders, and saves the output as Word or PDF files on the server.
+
+## Main Features
+- Use a Word template (`.dotx`) with predefined placeholders.
+- Replace placeholders with dynamic values (such as names, dates, and custom text).
+- Generate new documents based on the template.
+- Export and save generated files (Word/PDF) into result folders.
+- Simple web pages to trigger the document generation process.
+
+## Technology Stack
+- **Framework:** ASP.NET Web Forms (C#)
+- **Language:** C#
+- **Front-end:** ASP.NET WebForms + JavaScript
+- **Templates:** Microsoft Word `.dotx` files
+- **Output:** Word / PDF files stored on the server
+
+## Project Structure (High Level)
+- `App_Code/`  
+  Contains shared helper classes, including the mail-merge class used to manipulate the Word template and generate documents.
+
+- `Template/`  
+  Contains the main Word templates used as the base for the mail-merge process (for example, templates with watermark and placeholders).
+
+- `myTemplate/`  
+  Contains updated or customized versions of the Word templates used in the demo.
+
+- `Result/` and `myPdf/`  
+  Folders for storing generated output files (such as merged Word documents or exported PDFs).
+
+- `Default.aspx` and other pages  
+  Web pages that allow the user to trigger mail-merge operations and interact with the document generation demo.
+
+## How It Works (Conceptual Flow)
+1. The user (or the code) selects a Word template from the template folders.
+2. A mail-merge helper class (in `App_Code`) opens the template and finds predefined placeholders.
+3. The application passes dynamic values (for example: name, address, message text) to the helper class.
+4. The helper class replaces placeholders with real data and creates a new document instance.
+5. The new document is saved on the server in the result folders (Word or PDF).
+6. The user can open or download the generated document.
+
+## Internal API (Mail-Merge Helper Class)
+Instead of exposing a public Web API, the project uses an internal C# "API" (helper class) in `App_Code` that:
+- Loads the Word template.
+- Accepts input values as parameters.
+- Applies mail-merge logic to the template.
+- Saves the generated file to the appropriate folder.
+
+This internal API can be reused in other pages or projects that need the same document-generation behavior.
+
+## Use Cases
+- Generating personalized invitation letters.
+- Creating certificates or reports based on a standard template.
+- Automating document creation for students, clients, or internal reviews.
+
+## How to Run the Project
+1. Open the solution file `ali1982ReviewMailmerge.sln` in Visual Studio.
+2. Restore NuGet packages if needed.
+3. Run the project using IIS Express.
+4. Navigate to the main demo page (such as `Default.aspx` or the custom demo page) and execute the mail-merge actions.
